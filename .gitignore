@@ -1,0 +1,4 @@
+__pycache__/
+.pytest_cache/
+data/issue-body.tmp
+.DS_Store
