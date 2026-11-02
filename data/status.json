@@ -1,0 +1,245 @@
+{
+  "run_time": "2026-11-02T05:33:03.077934+00:00",
+  "first_run_date": "2026-11-02",
+  "days_with_success": 1,
+  "items": 39,
+  "new_today": [
+    "AUDUSD=X",
+    "BND",
+    "BNDW",
+    "BNDX",
+    "BRL=X",
+    "CAD=X",
+    "CHF=X",
+    "CNY=X",
+    "CORN",
+    "CPER",
+    "DBA",
+    "DBC",
+    "DX-Y.NYB",
+    "EURUSD=X",
+    "EWJ",
+    "GBPUSD=X",
+    "GLD",
+    "HYG",
+    "INR=X",
+    "JPY=X",
+    "LQD",
+    "MXN=X",
+    "SLV",
+    "SOYB",
+    "SPY",
+    "TIP",
+    "TLT",
+    "UNG",
+    "URTH",
+    "USO",
+    "VGK",
+    "VT",
+    "VWO",
+    "WEAT",
+    "^FVX",
+    "^IRX",
+    "^TNX",
+    "^TYX",
+    "^VIX"
+  ],
+  "gone_today": [],
+  "sources": [
+    {
+      "name": "VT",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "URTH",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "VWO",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "SPY",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "VGK",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "EWJ",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "BNDW",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "BND",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "BNDX",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "TLT",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "LQD",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "HYG",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "TIP",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "DBC",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "GLD",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "SLV",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "CPER",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "USO",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "UNG",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "DBA",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "CORN",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "WEAT",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "SOYB",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "EURUSD=X",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "GBPUSD=X",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "JPY=X",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "CAD=X",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "AUDUSD=X",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "CHF=X",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "CNY=X",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "INR=X",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "BRL=X",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "MXN=X",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "^IRX",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "^FVX",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "^TNX",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "^TYX",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "^VIX",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "DX-Y.NYB",
+      "ok": true,
+      "count": 1
+    }
+  ]
+}
