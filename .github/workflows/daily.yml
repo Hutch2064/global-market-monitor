@@ -28,7 +28,7 @@ jobs:
           path = pathlib.Path('data/status.json')
           status = json.loads(path.read_text()) if path.exists() else {}
           today = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
-          skip = (os.environ['EVENT_NAME'] == 'schedule' and status.get('run_time', '')[:10] == today and status.get('items', 0) > 0)
+          skip = (os.environ['EVENT_NAME'] == 'schedule' and status.get('run_time', '')[:10] == today and status.get('trigger') == 'schedule' and status.get('items', 0) > 0)
           print('skip=' + str(skip).lower())
           PY
       - uses: actions/setup-python@v5

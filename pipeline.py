@@ -1,5 +1,5 @@
 """Fetch, archive and reproduce the daily tracker and source histories."""
-import argparse, csv, gzip, json, shutil, time
+import argparse, csv, gzip, json, os, shutil, time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -113,7 +113,7 @@ def run():
     today = {x['item_id'] for x in history if x['date'] == day}
     previous_dates = [d for d in dates if d < day]
     previous = {x['item_id'] for x in history if previous_dates and x['date'] == previous_dates[-1]}
-    status = {'run_time': now.isoformat(), 'first_run_date': dates[0] if dates else None, 'days_with_success': len(dates), 'items': len(today), 'new_today': sorted(today - previous), 'gone_today': sorted(previous - today), 'sources': [results[item['symbol']] for item in CATALOG]}
+    status = {'run_time': now.isoformat(), 'trigger': os.environ.get('GITHUB_EVENT_NAME', 'local'), 'first_run_date': dates[0] if dates else None, 'days_with_success': len(dates), 'items': len(today), 'new_today': sorted(today - previous), 'gone_today': sorted(previous - today), 'sources': [results[item['symbol']] for item in CATALOG]}
     (DATA / 'status.json').write_text(json.dumps(status, indent=2) + '\n')
 
 if __name__ == '__main__':
