@@ -1,9 +1,12 @@
 {
-  "run_time": "2026-11-04T02:17:17.514793+00:00",
+  "run_time": "2026-11-04T03:13:31.063238+00:00",
+  "trigger": "workflow_dispatch",
   "first_run_date": "2026-11-02",
   "days_with_success": 3,
-  "items": 39,
-  "new_today": [],
+  "items": 40,
+  "new_today": [
+    "^MOVE"
+  ],
   "gone_today": [],
   "sources": [
     {
@@ -193,6 +196,11 @@
     },
     {
       "name": "^VIX",
+      "ok": true,
+      "count": 1
+    },
+    {
+      "name": "^MOVE",
       "ok": true,
       "count": 1
     },
