@@ -89,3 +89,13 @@ def test_committed_history_is_reproducible_from_raw(tmp_path, monkeypatch):
     pipeline.build()
     for name, contents in expected.items():
         assert (tmp_path/name).read_bytes() == contents
+
+
+def test_move_rejects_unusable_daily_high_low():
+    item = {'symbol':'^MOVE', 'name':'U.S. Treasury volatility (MOVE)', 'category':'Market gauges', 'unit':'index points', 'kind':'index'}
+    source = json.loads(payload())
+    source['chart']['result'][0]['indicators']['quote'][0]['high'] = [0, 13]
+    source['chart']['result'][0]['indicators']['quote'][0]['low'] = [0, None]
+    rows = pipeline.parse(json.dumps(source).encode(), item, '2026-01-01')
+    assert (rows[0]['high'], rows[0]['low'], rows[0]['close']) == (None, None, 10)
+    assert (rows[1]['high'], rows[1]['low']) == (13, None)

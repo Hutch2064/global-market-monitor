@@ -37,5 +37,6 @@
 {"symbol":"^TNX","name":"U.S. 10-year Treasury yield","category":"Rates","unit":"%","kind":"yield"},
 {"symbol":"^TYX","name":"U.S. 30-year Treasury yield","category":"Rates","unit":"%","kind":"yield"},
 {"symbol":"^VIX","name":"U.S. equity volatility (VIX)","category":"Market gauges","unit":"index points","kind":"index"},
+{"symbol":"^MOVE","name":"U.S. Treasury volatility (MOVE)","category":"Market gauges","unit":"index points","kind":"index"},
 {"symbol":"DX-Y.NYB","name":"U.S. dollar index","category":"Market gauges","unit":"index points","kind":"index"}
 ]

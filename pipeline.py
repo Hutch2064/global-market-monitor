@@ -32,6 +32,8 @@ def parse(raw, item, run_date):
         if close is None:
             continue
         values = {k: (quote_data.get(k) or [None] * len(timestamps))[i] for k in ('high', 'low')}
+        if item['symbol'] == '^MOVE':
+            values = {k: value if value is not None and value > 0 else None for k, value in values.items()}
         obs = datetime.fromtimestamp(timestamp, zone).date().isoformat()
         rows.append(dict(date=run_date, item_id=item['symbol'], item=item['name'], source='Yahoo Finance', category=item['category'], unit=item['unit'], kind=item['kind'], observation_date=obs, close=close, **values))
     if not rows:
