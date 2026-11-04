@@ -30,7 +30,7 @@ def gh(*args):
 
 
 def main():
-    day = datetime.now(timezone.utc).date().isoformat()
+    day = json.loads((DATA / 'status.json').read_text())['run_time'][:10]
     title = f'Daily market report — {day}'
     with (DATA / 'history.csv').open() as f:
         body = report(list(csv.DictReader(f)), day)

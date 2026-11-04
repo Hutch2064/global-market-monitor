@@ -43,3 +43,49 @@ def test_issue_ranks_absolute_move_and_new_gone():
     text = report(rows, '2026-01-02')
     assert 'Alpha' in text and '+10.00%' in text
     assert 'Appeared: C' in text and 'Disappeared: B' in text
+
+
+def test_failed_source_still_writes_status_and_empty_history(tmp_path, monkeypatch):
+    items = [{'symbol':'ABC', 'name':'Example', 'category':'Bonds', 'unit':'USD', 'kind':'fund'}]
+    monkeypatch.setattr(pipeline, 'DATA', tmp_path)
+    monkeypatch.setattr(pipeline, 'CATALOG', items)
+    (tmp_path / 'raw').mkdir()
+    def failed(item, full_history=False):
+        raise RuntimeError('unavailable')
+    monkeypatch.setattr(pipeline, 'fetch', failed)
+    pipeline.run()
+    status = json.loads((tmp_path / 'status.json').read_text())
+    assert status['items'] == 0
+    assert status['sources'] == [{'name':'ABC', 'ok':False, 'count':0}]
+    assert not list((tmp_path / 'raw').glob('*/*.gz'))
+    assert list(csv.DictReader((tmp_path / 'history.csv').open())) == []
+
+
+def test_incremental_raw_retains_earlier_source_history(tmp_path, monkeypatch):
+    item = {'symbol':'ABC', 'name':'Example', 'category':'Bonds', 'unit':'USD', 'kind':'fund'}
+    monkeypatch.setattr(pipeline, 'DATA', tmp_path)
+    monkeypatch.setattr(pipeline, 'CATALOG', [item])
+    for day in ('2026-01-01', '2026-01-02'):
+        (tmp_path/'raw'/day).mkdir(parents=True)
+    (tmp_path/'raw'/'2026-01-01'/'ABC.json.gz').write_bytes(gzip.compress(payload()))
+    new = json.loads(payload())
+    result = new['chart']['result'][0]
+    result['timestamp'] = [1609632000]
+    result['indicators']['quote'][0] = {'close':[15], 'high':[16], 'low':[14]}
+    (tmp_path/'raw'/'2026-01-02'/'ABC.json.gz').write_bytes(gzip.compress(json.dumps(new).encode()))
+    pipeline.build()
+    history = list(csv.DictReader((tmp_path/'history.csv').open()))
+    source = list(csv.DictReader((tmp_path/'source-history.csv').open()))
+    assert [float(x['close']) for x in history] == [12, 15]
+    assert [float(x['close']) for x in source] == [10, 12, 15]
+
+
+def test_committed_history_is_reproducible_from_raw(tmp_path, monkeypatch):
+    import shutil
+    repository_data = pipeline.DATA
+    expected = {name: (repository_data/name).read_bytes() for name in ('history.csv', 'source-history.csv')}
+    shutil.copytree(repository_data/'raw', tmp_path/'raw')
+    monkeypatch.setattr(pipeline, 'DATA', tmp_path)
+    pipeline.build()
+    for name, contents in expected.items():
+        assert (tmp_path/name).read_bytes() == contents

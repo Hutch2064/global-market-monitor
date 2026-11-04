@@ -1,5 +1,5 @@
 """Fetch, archive and reproduce the daily tracker and source histories."""
-import argparse, csv, gzip, json, os, shutil, time
+import argparse, csv, gzip, json, shutil, time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -39,9 +39,10 @@ def parse(raw, item, run_date):
     return rows
 
 
-def fetch(item):
+def fetch(item, full_history=False):
     symbol = safe_id(item['symbol'])
-    url = f'https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?period1=0&period2={int(time.time()) + 86400}&interval=1d&events=history'
+    query = f'period1=0&period2={int(time.time()) + 86400}' if full_history else 'range=1mo'
+    url = f'https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?{query}&interval=1d&events=history'
     request = Request(url, headers={'User-Agent': 'Mozilla/5.0 GlobalMarketMonitor/1.0'})
     last = None
     for attempt in range(3):
@@ -90,12 +91,14 @@ def run():
     now = datetime.now(timezone.utc)
     day = now.date().isoformat()
     folder = DATA / 'raw' / day
+    # A new symbol needs a full historical baseline. Check before replacing today.
+    has_history = {item['symbol']: any((old / (safe_id(item['symbol']) + '.json.gz')).exists() for old in (DATA / 'raw').glob('????-??-??') if old.name != day) for item in CATALOG}
     if folder.exists():
         shutil.rmtree(folder)
     folder.mkdir(parents=True)
     results = {}
     with ThreadPoolExecutor(max_workers=4) as executor:
-        futures = {executor.submit(fetch, item): item for item in CATALOG}
+        futures = {executor.submit(fetch, item, not has_history[item['symbol']]): item for item in CATALOG}
         for future in as_completed(futures):
             item = futures[future]
             try:
@@ -112,8 +115,6 @@ def run():
     previous = {x['item_id'] for x in history if previous_dates and x['date'] == previous_dates[-1]}
     status = {'run_time': now.isoformat(), 'first_run_date': dates[0] if dates else None, 'days_with_success': len(dates), 'items': len(today), 'new_today': sorted(today - previous), 'gone_today': sorted(previous - today), 'sources': [results[item['symbol']] for item in CATALOG]}
     (DATA / 'status.json').write_text(json.dumps(status, indent=2) + '\n')
-    if not today:
-        raise SystemExit('All sources failed; no successful daily run.')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
