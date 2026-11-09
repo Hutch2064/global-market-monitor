@@ -260680,3 +260680,14 @@ date,item_id,item,source,category,unit,kind,observation_date,close,high,low
 2026-11-07,INR=X,Indian rupee / U.S. dollar,Yahoo Finance,Currencies,INR per USD,currency,2026-11-07,93.91000366210938,93.91000366210938,93.91000366210938
 2026-11-07,JPY=X,Japanese yen / U.S. dollar,Yahoo Finance,Currencies,JPY per USD,currency,2026-11-07,158.4250030517578,158.4250030517578,158.4250030517578
 2026-11-07,MXN=X,Mexican peso / U.S. dollar,Yahoo Finance,Currencies,MXN per USD,currency,2026-11-07,18.59749984741211,18.59749984741211,18.59749984741211
+2026-11-08,BRL=X,Brazilian real / U.S. dollar,Yahoo Finance,Currencies,BRL per USD,currency,2026-11-08,5.505000114440918,5.505000114440918,5.4959001541137695
+2026-11-08,DX-Y.NYB,U.S. dollar index,Yahoo Finance,Market gauges,index points,index,2026-11-08,102.16100311279297,102.28399658203125,102.13200378417969
+2026-11-08,INR=X,Indian rupee / U.S. dollar,Yahoo Finance,Currencies,INR per USD,currency,2026-11-08,93.8949966430664,93.91000366210938,93.8949966430664
+2026-11-09,AUDUSD=X,Australian dollar / U.S. dollar,Yahoo Finance,Currencies,USD per AUD,currency,2026-11-09,0.6895125508308411,0.6895125508308411,0.686059296131134
+2026-11-09,CAD=X,Canadian dollar / U.S. dollar,Yahoo Finance,Currencies,CAD per USD,currency,2026-11-09,1.4114199876785278,1.413599967956543,1.4108999967575073
+2026-11-09,CHF=X,Swiss franc / U.S. dollar,Yahoo Finance,Currencies,CHF per USD,currency,2026-11-09,0.8208100199699402,0.820900022983551,0.818120002746582
+2026-11-09,CNY=X,Chinese yuan / U.S. dollar,Yahoo Finance,Currencies,CNY per USD,currency,2026-11-09,6.675099849700928,6.67549991607666,6.66379976272583
+2026-11-09,EURUSD=X,Euro / U.S. dollar,Yahoo Finance,Currencies,USD per EUR,currency,2026-11-09,1.1155734062194824,1.116071343421936,1.1138337850570679
+2026-11-09,GBPUSD=X,Pound / U.S. dollar,Yahoo Finance,Currencies,USD per GBP,currency,2026-11-09,1.3371129035949707,1.3375064134597778,1.3339380025863647
+2026-11-09,JPY=X,Japanese yen / U.S. dollar,Yahoo Finance,Currencies,JPY per USD,currency,2026-11-09,158.23599243164062,158.531005859375,158.125
+2026-11-09,MXN=X,Mexican peso / U.S. dollar,Yahoo Finance,Currencies,MXN per USD,currency,2026-11-09,18.584999084472656,18.640199661254883,18.579999923706055
